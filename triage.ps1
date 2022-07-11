@@ -1,23 +1,23 @@
-# #Check for Recently Written Files
+#Check for Recently Written Files
 
-# Write-Host "`r`n[+] Recently Written Files `r`n"
-# Write-Host "+++++++++++++++++++++++++++++++++++++++++"
+Write-Host "`r`n[+] Recently Written Files `r`n"
+Write-Host "+++++++++++++++++++++++++++++++++++++++++"
 
-# $recentFiles = Get-ChildItem -Path C:\ -include ('*.exe') -Recurse -ErrorAction SilentlyContinue -Force | ? {$_.LastWriteTime -gt (Get-Date).AddDays(-1)} | select -exp FullName
+$recentFiles = Get-ChildItem -Path C:\ -include ('*.exe') -Recurse -ErrorAction SilentlyContinue -Force | ? {$_.LastWriteTime -gt (Get-Date).AddDays(-1)} | select -exp FullName
 
-# foreach($file in $recentFiles) {
-    # Write-Host $file
-# }
+foreach($file in $recentFiles) {
+    Write-Host $file
+}
 
-# #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# #Check for Alternaste Data Streams in Recently Written Files
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Check for Alternaste Data Streams in Recently Written Files
 
-# Write-Host "`r`n[+] Files with ADS: `r`n"
-# Write-Host "+++++++++++++++++++++++++++++++++++++++++"
+Write-Host "`r`n[+] Files with ADS: `r`n"
+Write-Host "+++++++++++++++++++++++++++++++++++++++++"
 
-# Foreach($file in $recentFiles){
-    # Get-Item $file -stream * | ? stream -NE ':$Data'
-# }
+Foreach($file in $recentFiles){
+    Get-Item $file -stream * | ? stream -NE ':$Data'
+}
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Check Scheduled Tasks
